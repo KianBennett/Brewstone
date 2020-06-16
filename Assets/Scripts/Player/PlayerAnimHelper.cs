@@ -13,4 +13,8 @@ public class PlayerAnimHelper : MonoBehaviour {
     public void GetUp() {
         player.Recover();
     }
+
+    public void GrabItem() {
+        player.PickUpItem();
+    }
 }
