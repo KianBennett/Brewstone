@@ -57,6 +57,22 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Brew"",
+                    ""type"": ""Button"",
+                    ""id"": ""82163ccc-9a39-4c51-a501-aa9f6148da5b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""e04c1517-ae5e-412b-9e1a-5e67c287d347"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -213,6 +229,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd4a3a0c-8867-4022-abba-0fa9c3a990a1"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Brew"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e18a6aff-0c18-43ef-a976-fa32c987a2ff"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -243,6 +281,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Character_Throw = m_Character.FindAction("Throw", throwIfNotFound: true);
         m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
         m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
+        m_Character_Brew = m_Character.FindAction("Brew", throwIfNotFound: true);
+        m_Character_Inventory = m_Character.FindAction("Inventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -297,6 +337,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Character_Throw;
     private readonly InputAction m_Character_Sprint;
     private readonly InputAction m_Character_Look;
+    private readonly InputAction m_Character_Brew;
+    private readonly InputAction m_Character_Inventory;
     public struct CharacterActions
     {
         private @PlayerInput m_Wrapper;
@@ -306,6 +348,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Throw => m_Wrapper.m_Character_Throw;
         public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
         public InputAction @Look => m_Wrapper.m_Character_Look;
+        public InputAction @Brew => m_Wrapper.m_Character_Brew;
+        public InputAction @Inventory => m_Wrapper.m_Character_Inventory;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -330,6 +374,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
+                @Brew.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnBrew;
+                @Brew.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnBrew;
+                @Brew.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnBrew;
+                @Inventory.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInventory;
+                @Inventory.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInventory;
+                @Inventory.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInventory;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -349,6 +399,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Brew.started += instance.OnBrew;
+                @Brew.performed += instance.OnBrew;
+                @Brew.canceled += instance.OnBrew;
+                @Inventory.started += instance.OnInventory;
+                @Inventory.performed += instance.OnInventory;
+                @Inventory.canceled += instance.OnInventory;
             }
         }
     }
@@ -369,5 +425,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnThrow(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnBrew(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
     }
 }

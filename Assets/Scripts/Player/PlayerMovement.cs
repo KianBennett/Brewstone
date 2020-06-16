@@ -6,11 +6,11 @@ public class PlayerMovement : MonoBehaviour {
 
     public PlayerController player;
     public new Rigidbody rigidbody;
-    public Animator modelAnimator;
     public Transform cameraPos; // The transform that the camera should follow (around the shoulders)
     public float walkSpeed, runSpeed, turnSpeedWalk, turnSpeedRun;
     public float jumpForce;
     [ReadOnly] public bool isRunning;
+    [ReadOnly] public bool canMove = true;
 
     private Vector2 inputDir; // Set from controller input in PlayerController
     private Vector3 lookDir; // The direction for the model to be looking at
@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour {
         }
         animForward = Mathf.Lerp(animForward, animForwardTarget, transitionSpeed * Time.deltaTime);
         if(animForward < 0.01f) animForward = 0;
-        modelAnimator.SetFloat("moveSpeed", animForward);
-        modelAnimator.SetBool("isJumping", !isGrounded);
+        player.appearance.modelAnimator.SetFloat("moveSpeed", animForward);
+        player.appearance.modelAnimator.SetBool("isJumping", !isGrounded);
 
         // Scale input by animation speed
         if (animForwardTarget > 0) input *= animForward / animForwardTarget;
@@ -51,8 +51,8 @@ public class PlayerMovement : MonoBehaviour {
         if (lookDir != Vector3.zero) {
             // Linearly interpolate to make turning smooth (turn quicker when running)
             float turnSpeed = isRunning ? turnSpeedRun : turnSpeedWalk;
-            modelAnimator.transform.rotation = Quaternion.Lerp(modelAnimator.transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * turnSpeed);
-            float angle = Quaternion.Angle(modelAnimator.transform.rotation, Quaternion.LookRotation(lookDir));
+            player.appearance.modelAnimator.transform.rotation = Quaternion.Lerp(player.appearance.modelAnimator.transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * turnSpeed);
+            float angle = Quaternion.Angle(player.appearance.modelAnimator.transform.rotation, Quaternion.LookRotation(lookDir));
             movement *= 1 - angle / 180;
         }
 
@@ -62,7 +62,10 @@ public class PlayerMovement : MonoBehaviour {
         }
         // Keep y velocity otherwise jumping/gravity won't work
         movement.y = rigidbody.velocity.y;
-        rigidbody.velocity = movement;
+
+        if(canMove) {
+            rigidbody.velocity = movement;
+        }
 
         // Update camera to position of cameraPos transform
         CameraController.instance.SetCameraPosition(cameraPos.position);
@@ -84,7 +87,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void LookAtImmediate(Vector3 pos) {
         LookAt(pos);
-        modelAnimator.transform.rotation = Quaternion.LookRotation(lookDir);
+        player.appearance.modelAnimator.transform.rotation = Quaternion.LookRotation(lookDir);
     }
 
     public void Jump() {
