@@ -10,6 +10,8 @@ public class PlayerController : Singleton<PlayerController> {
     public CurlingStone curlingStonePrefab;
     public Transform curlingStonePos;
     public ThrowStrengthIndicator throwStrengthIndicator;
+    public int healthMax;
+    [ReadOnly] public int healthCurrent;
 
      public bool canControlPlayer {
         get { return controls.Character.enabled; }
@@ -24,6 +26,7 @@ public class PlayerController : Singleton<PlayerController> {
     private bool isCurling;
     private float curlStrength, curlPrepareTime;
     private CurlingStone curlingStoneActive;
+    private bool isHurt;
 
     protected override void Awake() {
         base.Awake();
@@ -36,7 +39,9 @@ public class PlayerController : Singleton<PlayerController> {
         controls.Character.Sprint.performed += ctx => movement.SetRunning(true);
         controls.Character.Sprint.canceled += ctx => movement.SetRunning(false);
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked; 
+        Cursor.lockState = CursorLockMode.Locked;
+
+        healthCurrent = healthMax;
     }
 
     void Update() {
@@ -56,7 +61,7 @@ public class PlayerController : Singleton<PlayerController> {
         }
 
         if(Input.GetKeyDown(KeyCode.E)) {
-            if(!isCurling && !isBrewing) {
+            if(!isCurling && !isBrewing && movement.canMove) {
                 PrepareCurl();
             }
         }
@@ -121,7 +126,26 @@ public class PlayerController : Singleton<PlayerController> {
             Physics.IgnoreCollision(collider, curlingStoneActive.collider, false);
             curlingStoneActive = null;
         }
-        movement.canMove = true;
+        movement.canLook = false;
         CameraController.instance.smoothCamera = false;
+    }
+
+    public void Hurt(Vector3 pos) {
+        if(isHurt) return;
+        isHurt = true;
+        appearance.modelAnimator.SetTrigger("hurt");
+        movement.canMove = false;
+        movement.canLook = false;
+        Vector3 dir = (transform.position - pos).normalized;
+        dir.y = 0;
+        movement.rigidbody.velocity = Vector3.zero;
+        movement.rigidbody.AddForce(dir * 12, ForceMode.Impulse);
+        movement.LookAt(pos);
+    }
+
+    public void Recover() {
+        isHurt = false;
+        movement.canLook = true;
+        movement.canMove = true;
     }
 }

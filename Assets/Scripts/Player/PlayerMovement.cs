@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     public float walkSpeed, runSpeed, turnSpeedWalk, turnSpeedRun;
     public float jumpForce;
     [ReadOnly] public bool isRunning;
-    [ReadOnly] public bool canMove = true;
+    [ReadOnly] public bool canMove = true, canLook = true;
 
     private Vector2 inputDir; // Set from controller input in PlayerController
     private Vector3 lookDir; // The direction for the model to be looking at
@@ -23,9 +23,12 @@ public class PlayerMovement : MonoBehaviour {
         // Normalise input vector otherwise diagonal movements (1, 1) will have a length 1.4 so the velocity will be higher
         if(input.magnitude > 1) input.Normalize();
 
+        if(!canMove && !canLook) input = Vector3.zero;
+
         // Set animator values
         float transitionSpeed = 10;
         float animForwardTarget = input.magnitude;
+        if(!canMove) animForwardTarget = 0;
         if (!isRunning && animForwardTarget > 0.5f) {
             animForwardTarget = 0.5f;
         }
