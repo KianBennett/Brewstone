@@ -13,7 +13,7 @@ public class CurlingStone : MonoBehaviour {
 
     private float tick;
     private bool hasBeenThrown;
-    private bool hasExploded;
+    [HideInInspector] public bool hasExploded;
 
     void Awake() {
     }
