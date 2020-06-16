@@ -45,7 +45,7 @@ public class PlayerController : Singleton<PlayerController> {
 
         healthCurrent = healthMax;
 
-        inventory = GameObject.Find("Inventory");
+        inventory = GameObject.Find("InventoryManager");
         invManager = inventory.gameObject.GetComponent<InventoryManager>();
     }
 
@@ -100,7 +100,6 @@ public class PlayerController : Singleton<PlayerController> {
         CameraController.instance.SetOverriddenCameraPos(appearance.brewingCameraPos);
         appearance.OpenBelly();
         isBrewing = true;
-        invManager.ShowInventory();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -110,7 +109,6 @@ public class PlayerController : Singleton<PlayerController> {
         CameraController.instance.SetOverriddenCameraPos(null);
         appearance.CloseBelly();
         isBrewing = false;
-        invManager.HideInventory();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

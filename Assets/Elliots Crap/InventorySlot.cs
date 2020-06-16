@@ -7,46 +7,47 @@ using UnityEngine.EventSystems;
 public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Sprite normalSlot;
-    public Sprite highlightedSlot;
+    //public Sprite highlightedSlot;
     public Sprite selectedSlot;
     public string ingredient;
-    private Image slot;
+    public Image slotBackground;
     [HideInInspector] public bool isSelected;
     private bool isHighlighted;
     public InventoryManager invManager;
+    public GameObject modelOutline;
+    public Material defaultOutline;
+    public Material highlightOutline;
 
     void Start()
     {
-        slot = gameObject.GetComponent<Image>();
         isSelected = false;
+        modelOutline.GetComponent<MeshRenderer>().material = defaultOutline;
     }
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         isHighlighted = true;
-        if (isSelected == false)
+        if(isSelected == false)
         {
-            slot.sprite = highlightedSlot;
-        }
+            modelOutline.GetComponent<MeshRenderer>().material = highlightOutline;
+        }  
     }
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         isHighlighted = false;
-        if (isSelected == false)
-        {
-            slot.sprite = normalSlot;
-        }
+        modelOutline.GetComponent<MeshRenderer>().material = defaultOutline;
     }
     public void Unhighlight()
     {
         isSelected = false;
-        slot.sprite = normalSlot;
+        slotBackground.sprite = normalSlot;
     }
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && isHighlighted == true)
         {
-            slot.sprite = selectedSlot;
+            slotBackground.sprite = selectedSlot;
             isSelected = true;
+            modelOutline.GetComponent<MeshRenderer>().material = defaultOutline;
             invManager.SlotSelected(ingredient);
         }
     }

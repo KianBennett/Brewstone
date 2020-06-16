@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8320972071285112769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8320972071285112783}
+  - component: {fileID: 8320972071285112768}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8320972071285112783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8320972071285112769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8320972071285112768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8320972071285112769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a354fa0d940f9c4bb1ecf7170e9b232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brimstoneSlot: {fileID: 0}
+  crystalSlot: {fileID: 0}
+  nitrogenSlot: {fileID: 0}
+  mushroomSlot: {fileID: 0}
+  selectedIngredient: 
+  brimstoneHeld: 0
+  crystalHeld: 0
+  nitrogenHeld: 0
+  mushroomHeld: 0
+  gunpowderHeld: 0
+  brimstoneAmount: {fileID: 0}
+  crystalAmount: {fileID: 0}
+  nitrogenAmount: {fileID: 0}
+  mushroomAmount: {fileID: 0}
+  gunpowderAmount: {fileID: 0}
+  brimstonePot: {fileID: 0}
+  crystalPot: {fileID: 0}
+  nitrogenPot: {fileID: 0}
+  mushroomPot: {fileID: 0}
