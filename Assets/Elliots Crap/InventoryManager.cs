@@ -23,6 +23,28 @@ public class InventoryManager : MonoBehaviour
     public Text mushroomAmount;
     public Text gunpowderAmount;
 
+<<<<<<< Updated upstream
+=======
+    public GameObject invBackground;
+    public GameObject invBrewButton;
+    private Animator anim;
+
+    public GameObject brimstonePot;
+    public GameObject crystalPot;
+    public GameObject nitrogenPot;
+    public GameObject mushroomPot;
+
+    void Start()
+    {
+        invBackground.SetActive(false);
+        invBrewButton.SetActive(false);
+        anim = GetComponent<Animator>();
+        brimstonePot.SetActive(false);
+        crystalPot.SetActive(false);
+        mushroomPot.SetActive(false);
+        nitrogenPot.SetActive(false);
+    }
+>>>>>>> Stashed changes
     public void SlotSelected(string ingredient)
     {
         if (ingredient == "brimstone")
@@ -30,6 +52,13 @@ public class InventoryManager : MonoBehaviour
             crystalSlot.Unhighlight();
             nitrogenSlot.Unhighlight();
             mushroomSlot.Unhighlight();
+<<<<<<< Updated upstream
+=======
+            brimstonePot.SetActive(true);
+            crystalPot.SetActive(false);
+            mushroomPot.SetActive(false);
+            nitrogenPot.SetActive(false);
+>>>>>>> Stashed changes
             selectedIngredient = brimstoneSlot.ingredient;
         }
         if (ingredient == "crystal")
@@ -37,6 +66,13 @@ public class InventoryManager : MonoBehaviour
             brimstoneSlot.Unhighlight();
             nitrogenSlot.Unhighlight();
             mushroomSlot.Unhighlight();
+<<<<<<< Updated upstream
+=======
+            brimstonePot.SetActive(false);
+            crystalPot.SetActive(true);
+            mushroomPot.SetActive(false);
+            nitrogenPot.SetActive(false);
+>>>>>>> Stashed changes
             selectedIngredient = crystalSlot.ingredient;
         }
         if (ingredient == "nitrogen")
@@ -44,6 +80,13 @@ public class InventoryManager : MonoBehaviour
             brimstoneSlot.Unhighlight();
             crystalSlot.Unhighlight();
             mushroomSlot.Unhighlight();
+<<<<<<< Updated upstream
+=======
+            brimstonePot.SetActive(false);
+            crystalPot.SetActive(false);
+            mushroomPot.SetActive(false);
+            nitrogenPot.SetActive(true);
+>>>>>>> Stashed changes
             selectedIngredient = nitrogenSlot.ingredient;
         }
         if (ingredient == "mushroom")
@@ -51,6 +94,13 @@ public class InventoryManager : MonoBehaviour
             brimstoneSlot.Unhighlight();
             crystalSlot.Unhighlight();
             nitrogenSlot.Unhighlight();
+<<<<<<< Updated upstream
+=======
+            brimstonePot.SetActive(false);
+            crystalPot.SetActive(false);
+            mushroomPot.SetActive(true);
+            nitrogenPot.SetActive(false);
+>>>>>>> Stashed changes
             selectedIngredient = mushroomSlot.ingredient;
         }
     }
@@ -90,4 +140,33 @@ public class InventoryManager : MonoBehaviour
             }
         }   
     }
+<<<<<<< Updated upstream
+=======
+
+    public void ShowInventory()
+    {
+        StartCoroutine(showInventory());
+    }
+
+    public void HideInventory()
+    {
+        StartCoroutine(hideInventory());
+    }
+
+    private IEnumerator showInventory()
+    {
+        //yield return new WaitForSeconds(0.1f);
+        invBackground.SetActive(true);
+        invBrewButton.SetActive(true);
+        anim.SetTrigger("Show");
+        yield return new WaitForSeconds(0.6f);
+    }
+    private IEnumerator hideInventory()
+    {
+        anim.SetTrigger("Hide");
+        yield return new WaitForSeconds(0.6f);
+        //invBackground.SetActive(false);
+        //invBrewButton.SetActive(false);
+    }
+>>>>>>> Stashed changes
 }

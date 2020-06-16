@@ -481,7 +481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7690596553403195254, guid: 78f0cedbe39ee8941b286cf2d7f64f97, type: 3}
       propertyPath: m_IsActive
+<<<<<<< Updated upstream
       value: 1
+=======
+      value: 0
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7690596553762959128, guid: 78f0cedbe39ee8941b286cf2d7f64f97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -531,6 +535,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneController
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 7690596553762959130, guid: 78f0cedbe39ee8941b286cf2d7f64f97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 7690596553762959131, guid: 78f0cedbe39ee8941b286cf2d7f64f97, type: 3}
       propertyPath: fadeOut
       value: 1
