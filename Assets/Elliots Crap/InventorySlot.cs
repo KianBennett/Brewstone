@@ -13,7 +13,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public Image slotBackground;
     [HideInInspector] public bool isSelected;
     private bool isHighlighted;
-    public InventoryManager invManager;
+    // public InventoryManager invManager;
     public GameObject modelOutline;
     public Material defaultOutline;
     public Material highlightOutline;
@@ -48,7 +48,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             slotBackground.sprite = selectedSlot;
             isSelected = true;
             modelOutline.GetComponent<MeshRenderer>().material = defaultOutline;
-            invManager.SlotSelected(ingredient);
+            InventoryManager.instance.SlotSelected(ingredient);
         }
     }
 }

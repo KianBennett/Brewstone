@@ -564,7 +564,9 @@ MonoBehaviour:
   ingredient: Gunpowder
   slotBackground: {fileID: 1888549300393878671}
   isSelected: 0
-  invManager: {fileID: 0}
+  modelOutline: {fileID: 0}
+  defaultOutline: {fileID: 5967751492454651251, guid: 60eeb3e8b43e5854894bfe1399d95c5b, type: 3}
+  highlightOutline: {fileID: 0}
 --- !u!1 &8968538761784511324
 GameObject:
   m_ObjectHideFlags: 0

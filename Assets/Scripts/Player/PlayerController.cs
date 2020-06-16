@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 public enum PotionType {
-    Brimstone, Crystal, Gunpowder, Nitrogen, Mushroom
+    Brimstone, Crystal, Nitrogen, Mushroom
 }
 
 public class PlayerController : Singleton<PlayerController> {
@@ -19,9 +19,6 @@ public class PlayerController : Singleton<PlayerController> {
     [ReadOnly] public int healthCurrent;
     [ReadOnly] public List<GroundItem> itemsNearby = new List<GroundItem>();
     [ReadOnly] public PotionType potionTypeSelected;
-
-    private GameObject inventory;
-    private InventoryManager invManager;
 
      public bool canControlPlayer {
         get { return controls.Character.enabled; }
@@ -54,9 +51,6 @@ public class PlayerController : Singleton<PlayerController> {
         Cursor.lockState = CursorLockMode.Locked;
 
         healthCurrent = healthMax;
-
-        inventory = GameObject.Find("InventoryManager");
-        invManager = inventory.gameObject.GetComponent<InventoryManager>();
     }
 
     void Update() {
