@@ -9,4 +9,8 @@ public class PlayerAnimHelper : MonoBehaviour {
     public void ReplaceBellyDoor() {
         player.appearance.ReplaceBellyDoor();
     }
+
+    public void GetUp() {
+        player.Recover();
+    }
 }
