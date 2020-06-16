@@ -73,6 +73,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Grab"",
+                    ""type"": ""Button"",
+                    ""id"": ""85d34fd6-1b9f-49ca-87f9-6ee8b24ba83b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -251,6 +259,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce69e7d8-5bf3-42c3-b7e5-d33fcf17849d"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Grab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +302,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
         m_Character_Brew = m_Character.FindAction("Brew", throwIfNotFound: true);
         m_Character_Inventory = m_Character.FindAction("Inventory", throwIfNotFound: true);
+        m_Character_Grab = m_Character.FindAction("Grab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +359,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Character_Look;
     private readonly InputAction m_Character_Brew;
     private readonly InputAction m_Character_Inventory;
+    private readonly InputAction m_Character_Grab;
     public struct CharacterActions
     {
         private @PlayerInput m_Wrapper;
@@ -350,6 +371,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Character_Look;
         public InputAction @Brew => m_Wrapper.m_Character_Brew;
         public InputAction @Inventory => m_Wrapper.m_Character_Inventory;
+        public InputAction @Grab => m_Wrapper.m_Character_Grab;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -380,6 +402,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Inventory.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInventory;
                 @Inventory.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInventory;
                 @Inventory.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInventory;
+                @Grab.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnGrab;
+                @Grab.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnGrab;
+                @Grab.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnGrab;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -405,6 +430,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Inventory.started += instance.OnInventory;
                 @Inventory.performed += instance.OnInventory;
                 @Inventory.canceled += instance.OnInventory;
+                @Grab.started += instance.OnGrab;
+                @Grab.performed += instance.OnGrab;
+                @Grab.canceled += instance.OnGrab;
             }
         }
     }
@@ -427,5 +455,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnBrew(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnGrab(InputAction.CallbackContext context);
     }
 }

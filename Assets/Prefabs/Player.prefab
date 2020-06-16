@@ -2293,6 +2293,7 @@ MonoBehaviour:
   throwStrengthIndicator: {fileID: 8928692268281876120}
   healthMax: 0
   healthCurrent: 0
+  itemsNearby: []
 --- !u!114 &3474931342540010651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2357,7 +2358,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3474931342540010655}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 09f2e1fafe70b30488cb40890bfc1fa8, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5

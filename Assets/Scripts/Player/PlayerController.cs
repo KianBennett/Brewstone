@@ -1,6 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+public enum PotionType {
+    Brimstone, Crystal, Gunpowder, Nitrogen, Mushroom
+}
 
 public class PlayerController : Singleton<PlayerController> {
 
@@ -12,6 +17,9 @@ public class PlayerController : Singleton<PlayerController> {
     public ThrowStrengthIndicator throwStrengthIndicator;
     public int healthMax;
     [ReadOnly] public int healthCurrent;
+    [ReadOnly] public List<GroundItem> itemsNearby = new List<GroundItem>();
+    [ReadOnly] public PotionType potionTypeSelected;
+
     private GameObject inventory;
     private InventoryManager invManager;
 
@@ -29,6 +37,7 @@ public class PlayerController : Singleton<PlayerController> {
     private float curlStrength, curlPrepareTime;
     private CurlingStone curlingStoneActive;
     private bool isHurt;
+    private GroundItem itemGrabbing;
 
     protected override void Awake() {
         base.Awake();
@@ -40,6 +49,7 @@ public class PlayerController : Singleton<PlayerController> {
         controls.Character.Move.canceled += ctx => movement.SetInput(Vector2.zero);
         controls.Character.Sprint.performed += ctx => movement.SetRunning(true);
         controls.Character.Sprint.canceled += ctx => movement.SetRunning(false);
+        controls.Character.Grab.performed += ctx => GrabNearestItem();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -154,5 +164,25 @@ public class PlayerController : Singleton<PlayerController> {
         isHurt = false;
         movement.canLook = true;
         movement.canMove = true;
+    }
+
+    public void GrabNearestItem() {
+        if(itemsNearby.Count == 0) return;
+
+        Grab(itemsNearby.OrderBy(o => Vector3.Distance(transform.position, o.transform.position)).ToArray()[0]);
+    }
+
+    public void Grab(GroundItem item) {
+        appearance.modelAnimator.SetTrigger("grab");
+        itemGrabbing = item;
+        // movement.canLook = false;
+        movement.canMove = false;
+        movement.LookAt(item.transform.position);
+    }
+
+    public void PickUpItem() {
+        if(itemGrabbing != null) {
+            Destroy(itemGrabbing.gameObject);
+        }
     }
 }
