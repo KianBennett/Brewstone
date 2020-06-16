@@ -12,6 +12,8 @@ public class PlayerController : Singleton<PlayerController> {
     public ThrowStrengthIndicator throwStrengthIndicator;
     public int healthMax;
     [ReadOnly] public int healthCurrent;
+    private GameObject inventory;
+    private InventoryManager invManager;
 
      public bool canControlPlayer {
         get { return controls.Character.enabled; }
@@ -42,18 +44,19 @@ public class PlayerController : Singleton<PlayerController> {
         Cursor.lockState = CursorLockMode.Locked;
 
         healthCurrent = healthMax;
+
+        inventory = GameObject.Find("Inventory");
+        invManager = inventory.gameObject.GetComponent<InventoryManager>();
     }
 
     void Update() {
         if(Input.GetKeyDown(KeyCode.Tab)) {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None; 
         }
 
-        if(Input.GetMouseButtonDown(0)) {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked; 
-        }
+        //if(Input.GetMouseButtonDown(0)) {
+        //    Cursor.visible = false;
+        //    Cursor.lockState = CursorLockMode.Locked; 
+        //}
 
         if(Input.GetKeyDown(KeyCode.B)) {
             if(isBrewing) StopBrewing();
@@ -97,6 +100,9 @@ public class PlayerController : Singleton<PlayerController> {
         CameraController.instance.SetOverriddenCameraPos(appearance.brewingCameraPos);
         appearance.OpenBelly();
         isBrewing = true;
+        invManager.ShowInventory();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void StopBrewing() {
@@ -104,6 +110,9 @@ public class PlayerController : Singleton<PlayerController> {
         CameraController.instance.SetOverriddenCameraPos(null);
         appearance.CloseBelly();
         isBrewing = false;
+        invManager.HideInventory();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void PrepareCurl() {
