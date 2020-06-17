@@ -43,6 +43,10 @@ public class PlayerMovement : MonoBehaviour {
         // Get movement vector by multiplying input my current speed (depending on whether the player is running etc)
         Vector3 movement = input * GetMaxSpeed();
 
+        if(player.isCurling) {
+            LookAt(getGroundMousePoint());
+        }
+
         // Set look direction to input vector (i.e. the direction the player is moving)
         if(input != Vector3.zero) {
             lookDir = input;
@@ -121,5 +125,14 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    private Vector3 getGroundMousePoint() {
+        RaycastHit hitInfo;
+        Ray ray = CameraController.instance.camera.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hitInfo, Mathf.Infinity, LayerMask.GetMask("Ground"))) {
+            return hitInfo.point;
+        }
+        return Vector3.zero;
     }
 }

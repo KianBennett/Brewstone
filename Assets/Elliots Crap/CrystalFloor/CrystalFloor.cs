@@ -38,7 +38,7 @@ public class CrystalFloor : MonoBehaviour
     }
     void Update()
     {
-        if (curlingStone.gameObject.GetComponent<CurlingStone>().hasExploded == true && entered == true && hit == false)
+        if (curlingStone != null && curlingStone.gameObject.GetComponent<CurlingStone>().hasExploded == true && entered == true && hit == false)
         {
             hit = true;
             crystals.SetActive(true);

@@ -106,22 +106,40 @@ public class InventoryManager : Singleton<InventoryManager>
             {
                 brimstoneHeld--;
                 gunpowderHeld--;
+                brimstonePotionHeld++;
             }
             if (selectedIngredient == "crystal" && crystalHeld >= 1)
             {
                 crystalHeld--;
                 gunpowderHeld--;
+                crystalPotionHeld++;
             }
             if (selectedIngredient == "nitrogen" && nitrogenHeld >= 1)
             {
                 nitrogenHeld--;
                 gunpowderHeld--;
+                nitrogenPotionHeld++;
             }
             if (selectedIngredient == "mushroom" && mushroomHeld >= 1)
             {
                 mushroomHeld--;
                 gunpowderHeld--;
+                mushroomPotionHeld++;
             }
         }   
+    }
+
+    public bool HasIngredientForSelected() {
+        switch(selectedIngredient) {
+            case "brimstone":
+                return  gunpowderHeld > 0 && brimstoneHeld > 0;
+            case "crystal":
+                return  gunpowderHeld > 0 && crystalHeld > 0;
+            case "nitrogen":
+                return  gunpowderHeld > 0 && nitrogenHeld > 0;
+            case "mushroom":
+                return  gunpowderHeld > 0 && mushroomHeld > 0;
+        }
+        return false;
     }
 }

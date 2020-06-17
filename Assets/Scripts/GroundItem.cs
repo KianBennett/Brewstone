@@ -12,7 +12,7 @@ public class GroundItem : MonoBehaviour {
         float playerDist = Vector3.Distance(PlayerController.instance.transform.position, transform.position);
         bool nearby = playerDist < grabDist;
 
-        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * (nearby ? 1.4f : 1.0f), Time.deltaTime * 5);
+        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * (nearby ? 1.4f : 1.0f), Time.deltaTime * 10);
 
         if(nearby && !PlayerController.instance.itemsNearby.Contains(this)) {
             PlayerController.instance.itemsNearby.Add(this);
@@ -23,8 +23,10 @@ public class GroundItem : MonoBehaviour {
     }
 
     void OnDisable() {
-        if(PlayerController.instance.itemsNearby.Contains(this)) {
-            PlayerController.instance.itemsNearby.Remove(this);
+        if(PlayerController.instance) {
+            if(PlayerController.instance.itemsNearby.Contains(this)) {
+                PlayerController.instance.itemsNearby.Remove(this);
+            }
         }
     }
 }

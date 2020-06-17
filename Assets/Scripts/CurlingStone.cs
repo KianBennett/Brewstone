@@ -10,6 +10,7 @@ public class CurlingStone : MonoBehaviour {
     public Light pointLight;
     public ParticleSystem explodeParticlesPrefab, smokeParticlesPrefab;
     public float explosionRadius;
+    public PotionType type;
 
     private float tick;
     private bool hasBeenThrown;
@@ -21,15 +22,19 @@ public class CurlingStone : MonoBehaviour {
     void Update() {
         CameraController.instance.SetCameraPosition(transform.position);
 
-        if(hasBeenThrown && rigidbody.velocity.magnitude < 0.05f) {
+        if(hasBeenThrown && (rigidbody.velocity.magnitude < 0.05f || hasExploded)) {
             tick += Time.deltaTime;
-            if(tick > 0.5f) {
+            if(tick > 0.1f) {
                 if(!hasExploded) Explode();
                 pointLight.intensity = Mathf.MoveTowards(pointLight.intensity, 0, Time.deltaTime * 10);
             }
-            if(tick > 1.5f) {
+            if(tick > 1.1f) {
                 Destroy();
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)) {
+            Explode();
         }
     }
 
@@ -41,6 +46,7 @@ public class CurlingStone : MonoBehaviour {
 
     public void Explode() {
         hasExploded = true;
+        rigidbody.velocity = Vector3.zero;
         pointLight.gameObject.SetActive(true);
         Destroy(model);
         Instantiate(explodeParticlesPrefab, transform.position, Quaternion.Euler(-90, 0, 0));
@@ -49,7 +55,7 @@ public class CurlingStone : MonoBehaviour {
         // Not optimal but quick to implement
         foreach(Ghost ghost in GameObject.FindObjectsOfType<Ghost>()) {
             float dist = Vector3.Distance(ghost.transform.position, transform.position);
-            if(dist < explosionRadius) {
+            if(dist < explosionRadius && ((ghost.hasWeakness && ghost.weakness == type) || !ghost.hasWeakness)) {
                 ghost.Kill();
             }
         }

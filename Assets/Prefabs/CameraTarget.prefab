@@ -141,7 +141,6 @@ MonoBehaviour:
   cameraContainer: {fileID: 6355881702145270371}
   camera: {fileID: 6355881702171106072}
   smoothCamera: 0
-  spotLight: {fileID: 465585731}
 --- !u!1 &6355881702145270370
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6355881702145270370}
   m_LocalRotation: {x: 0.42064, y: 0, z: 0, w: 0.90722764}
-  m_LocalPosition: {x: 0, y: 7.67, z: -7.27}
+  m_LocalPosition: {x: 0, y: 9.75, z: -9.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6355881702171106073}

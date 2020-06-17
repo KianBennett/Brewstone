@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 public enum PotionType {
-    Brimstone, Crystal, Nitrogen, Mushroom
+    Brimstone, Crystal, Nitrogen, Mushroom, Gunpowder
 }
 
 public class PlayerController : Singleton<PlayerController> {
@@ -12,7 +12,7 @@ public class PlayerController : Singleton<PlayerController> {
     public PlayerAppearance appearance;
     public PlayerMovement movement;
     public new Collider collider;
-    public CurlingStone curlingStonePrefab;
+    public CurlingStone curlingStoneBrimstonePrefab, curlingStoneNitrogenPrefab, curlingStoneCrystalPrefab, curlingStoneMushroomPrefab;
     public Transform curlingStonePos;
     public ThrowStrengthIndicator throwStrengthIndicator;
     public int healthMax;
@@ -30,10 +30,10 @@ public class PlayerController : Singleton<PlayerController> {
 
     private PlayerInput controls;
     private bool isBrewing;
-    private bool isCurling;
+    public bool isCurling;
     private float curlStrength, curlPrepareTime;
     private CurlingStone curlingStoneActive;
-    private bool isHurt;
+    public bool isHurt;
     private GroundItem itemGrabbing;
 
     protected override void Awake() {
@@ -135,25 +135,29 @@ public class PlayerController : Singleton<PlayerController> {
         curlStrength = curlPrepareTime = 0;
         throwStrengthIndicator.Show();
         appearance.modelAnimator.SetTrigger("curlPrepare");
-        curlingStoneActive = Instantiate(curlingStonePrefab, curlingStonePos.position, appearance.modelAnimator.transform.rotation);
+        curlingStoneActive = Instantiate(getCurlingStonePrefab(potionTypeSelected), curlingStonePos.position, appearance.modelAnimator.transform.rotation);
         Physics.IgnoreCollision(collider, curlingStoneActive.collider, true);
         movement.canMove = false;
+        movement.rigidbody.velocity = Vector3.zero;
         CameraController.instance.smoothCamera = true;
 
-        switch(itemGrabbing.type) {
-                case PotionType.Brimstone:
-                    InventoryManager.instance.brimstonePotionHeld--;
-                    break;
-                case PotionType.Crystal:
-                    InventoryManager.instance.crystalHeld--;
-                    break;
-                case PotionType.Nitrogen:
-                    InventoryManager.instance.nitrogenPotionHeld--;
-                    break;
-                case PotionType.Mushroom:
-                    InventoryManager.instance.mushroomPotionHeld--;
-                    break;
-            }
+        switch(potionTypeSelected) {
+            case PotionType.Brimstone:
+                InventoryManager.instance.brimstonePotionHeld--;
+                break;
+            case PotionType.Crystal:
+                InventoryManager.instance.crystalPotionHeld--;
+                break;
+            case PotionType.Nitrogen:
+                InventoryManager.instance.nitrogenPotionHeld--;
+                break;
+            case PotionType.Mushroom:
+                InventoryManager.instance.mushroomPotionHeld--;
+                break;
+        }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void ThrowCurl() {
@@ -167,6 +171,9 @@ public class PlayerController : Singleton<PlayerController> {
         }
         movement.canLook = false;
         CameraController.instance.smoothCamera = false;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Hurt(Vector3 pos) {
@@ -200,24 +207,29 @@ public class PlayerController : Singleton<PlayerController> {
         // movement.canLook = false;
         movement.canMove = false;
         movement.LookAt(item.transform.position);
+        movement.rigidbody.velocity = Vector3.zero;
     }
 
     public void PickUpItem() {
         if(itemGrabbing != null) {
             switch(itemGrabbing.type) {
                 case PotionType.Brimstone:
-                    InventoryManager.instance.brimstonePotionHeld++;
+                    InventoryManager.instance.brimstoneHeld++;
                     break;
                 case PotionType.Crystal:
                     InventoryManager.instance.crystalHeld++;
                     break;
                 case PotionType.Nitrogen:
-                    InventoryManager.instance.nitrogenPotionHeld++;
+                    InventoryManager.instance.nitrogenHeld++;
                     break;
                 case PotionType.Mushroom:
-                    InventoryManager.instance.mushroomPotionHeld++;
+                    InventoryManager.instance.mushroomHeld++;
+                    break;
+                case PotionType.Gunpowder:
+                    InventoryManager.instance.gunpowderHeld += 5;
                     break;
             }
+            LevelManager.instance.AddIngredientToSpawn(itemGrabbing.transform.position, itemGrabbing.type);
             Destroy(itemGrabbing.gameObject);
         }
     }
@@ -234,5 +246,19 @@ public class PlayerController : Singleton<PlayerController> {
                 return InventoryManager.instance.mushroomPotionHeld > 0;
         }
         return false;
+    }
+
+    private CurlingStone getCurlingStonePrefab(PotionType type) {
+        switch(type) {
+            case PotionType.Brimstone:
+                return curlingStoneBrimstonePrefab;
+            case PotionType.Nitrogen:
+                return curlingStoneNitrogenPrefab;
+            case PotionType.Crystal:
+                return curlingStoneCrystalPrefab;
+            case PotionType.Mushroom:
+                return curlingStoneMushroomPrefab;
+        }
+        return null;
     }
 }
