@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GroundItem : MonoBehaviour {
 
+    public PotionType type;
+
     private const float grabDist = 2.0f;
 
     void Update() {

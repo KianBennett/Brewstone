@@ -68,7 +68,7 @@ public class PlayerController : Singleton<PlayerController> {
         }
 
         if(Input.GetKeyDown(KeyCode.E)) {
-            if(!isCurling && !isBrewing && movement.canMove) {
+            if(!isCurling && !isBrewing && movement.canMove && hasPotionSelected()) {
                 PrepareCurl();
             }
         }
@@ -77,6 +77,19 @@ public class PlayerController : Singleton<PlayerController> {
             if(isCurling) {
                 ThrowCurl();
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)) {
+            potionTypeSelected = PotionType.Brimstone;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2)) {
+            potionTypeSelected = PotionType.Crystal;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3)) {
+            potionTypeSelected = PotionType.Nitrogen;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha4)) {
+            potionTypeSelected = PotionType.Mushroom;
         }
 
         if(isCurling) {
@@ -126,6 +139,21 @@ public class PlayerController : Singleton<PlayerController> {
         Physics.IgnoreCollision(collider, curlingStoneActive.collider, true);
         movement.canMove = false;
         CameraController.instance.smoothCamera = true;
+
+        switch(itemGrabbing.type) {
+                case PotionType.Brimstone:
+                    InventoryManager.instance.brimstonePotionHeld--;
+                    break;
+                case PotionType.Crystal:
+                    InventoryManager.instance.crystalHeld--;
+                    break;
+                case PotionType.Nitrogen:
+                    InventoryManager.instance.nitrogenPotionHeld--;
+                    break;
+                case PotionType.Mushroom:
+                    InventoryManager.instance.mushroomPotionHeld--;
+                    break;
+            }
     }
 
     public void ThrowCurl() {
@@ -176,7 +204,35 @@ public class PlayerController : Singleton<PlayerController> {
 
     public void PickUpItem() {
         if(itemGrabbing != null) {
+            switch(itemGrabbing.type) {
+                case PotionType.Brimstone:
+                    InventoryManager.instance.brimstonePotionHeld++;
+                    break;
+                case PotionType.Crystal:
+                    InventoryManager.instance.crystalHeld++;
+                    break;
+                case PotionType.Nitrogen:
+                    InventoryManager.instance.nitrogenPotionHeld++;
+                    break;
+                case PotionType.Mushroom:
+                    InventoryManager.instance.mushroomPotionHeld++;
+                    break;
+            }
             Destroy(itemGrabbing.gameObject);
         }
+    }
+
+    private bool hasPotionSelected() {
+        switch(potionTypeSelected) {
+            case PotionType.Brimstone:
+                return InventoryManager.instance.brimstonePotionHeld > 0;
+            case PotionType.Crystal:
+                return InventoryManager.instance.crystalPotionHeld > 0;
+            case PotionType.Nitrogen:
+                return InventoryManager.instance.nitrogenPotionHeld > 0;
+            case PotionType.Mushroom:
+                return InventoryManager.instance.mushroomPotionHeld > 0;
+        }
+        return false;
     }
 }

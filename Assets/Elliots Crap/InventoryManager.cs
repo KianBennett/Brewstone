@@ -17,6 +17,11 @@ public class InventoryManager : Singleton<InventoryManager>
     public int mushroomHeld;
     public int gunpowderHeld;
 
+    public int brimstonePotionHeld;
+    public int crystalPotionHeld;
+    public int nitrogenPotionHeld;
+    public int mushroomPotionHeld;
+
     public Text brimstoneAmount;
     public Text crystalAmount;
     public Text nitrogenAmount;

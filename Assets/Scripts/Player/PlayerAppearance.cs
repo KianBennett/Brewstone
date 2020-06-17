@@ -10,8 +10,10 @@ public class PlayerAppearance : MonoBehaviour {
     public Transform brewingCameraPos;
     public Transform potionContainer;
     public GameObject bellyInsides;
+    public ParticleSystem steamParticles;
 
     private Vector3 potionContainerInitPos;
+    private float potionRotSpeed;
 
     void Awake() {
         potionContainerInitPos = potionContainer.transform.localPosition;
@@ -27,6 +29,13 @@ public class PlayerAppearance : MonoBehaviour {
         // }
 
         potionContainer.transform.localPosition = new Vector3(potionContainerInitPos.x, potionContainerInitPos.y + 0.0004f * Mathf.Sin(Time.time * 4), potionContainerInitPos.z);
+
+        potionRotSpeed = Mathf.Lerp(potionRotSpeed, 90, Time.deltaTime * 4);
+        potionContainer.transform.Rotate(Vector3.up, potionRotSpeed * Time.deltaTime, Space.Self);
+
+        if(Input.GetKeyDown(KeyCode.M)) {
+            CreatePotion();
+        }
     }
 
     public void OpenBelly() {
@@ -44,5 +53,10 @@ public class PlayerAppearance : MonoBehaviour {
     public void ReplaceBellyDoor() {
         skinnedDoor.gameObject.SetActive(true);
         staticDoor.gameObject.SetActive(false);
+    }
+
+    public void CreatePotion() {
+        potionRotSpeed = 2500;
+        steamParticles.Play();
     }
 }

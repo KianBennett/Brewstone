@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 8342921483653508603}
   - component: {fileID: 8342921483653508601}
   - component: {fileID: 8342921483653508604}
+  - component: {fileID: 5028221885434740036}
   m_Layer: 5
   m_Name: PotionButton
   m_TagString: Untagged
@@ -331,3 +332,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5028221885434740036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342921483653508606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 205e0dec946d8484daf967772cde85b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  canvasGroup: {fileID: 8342921483653508604}
+  textCount: {fileID: 8342921482739643603}
