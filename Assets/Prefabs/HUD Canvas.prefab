@@ -162,6 +162,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9120009092508382881}
     m_Modifications:
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectColor.a
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectDistance.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230605, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 80f723bcac346b24cb08e7b17739bff9, type: 3}
+    - target: {fileID: 8342921481815230606, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230606, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8342921482739643603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
       propertyPath: m_text
       value: 0
@@ -283,10 +311,34 @@ PrefabInstance:
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectColor.a
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectDistance.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 8342921481815230605, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 201621c2fcc224e43bbeb8f9da1c7391, type: 3}
+      objectReference: {fileID: 21300000, guid: bfd02113a0db1844d9c1c38a4c2b9fe0, type: 3}
+    - target: {fileID: 8342921481815230606, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230606, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8342921482739643603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
       propertyPath: m_text
       value: 0
@@ -408,10 +460,34 @@ PrefabInstance:
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectColor.a
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectDistance.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 8342921481815230605, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5e3a44a387255484b9b08dc1013aa2b3, type: 3}
+      objectReference: {fileID: 21300000, guid: 25357e34a5af6b6438f61bc7f4850968, type: 3}
+    - target: {fileID: 8342921481815230606, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230606, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8342921482739643603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
       propertyPath: m_text
       value: 0
@@ -533,10 +609,34 @@ PrefabInstance:
       propertyPath: type
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectColor.a
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectDistance.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_EffectDistance.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 8342921481815230605, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7b67c47a88192ab46912bce370bfc29c, type: 3}
+      objectReference: {fileID: 21300000, guid: 3fe590c9a8d5e3d4b990398d699aba01, type: 3}
+    - target: {fileID: 8342921481815230606, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342921481815230606, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8342921482739643603, guid: d3bea42091bb3ae4ab8b7bc32d0566b8, type: 3}
       propertyPath: m_text
       value: 0

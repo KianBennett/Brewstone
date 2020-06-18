@@ -45,6 +45,7 @@ public class CurlingStone : MonoBehaviour {
     }
 
     public void Explode() {
+        if(hasExploded) return;
         hasExploded = true;
         rigidbody.velocity = Vector3.zero;
         pointLight.gameObject.SetActive(true);

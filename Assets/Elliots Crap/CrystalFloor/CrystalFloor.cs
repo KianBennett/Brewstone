@@ -23,7 +23,7 @@ public class CrystalFloor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "CurlingStone(Clone)" && hit == false)
+        if (other.GetComponent<CurlingStone>() && hit == false)
         {
             entered = true;
             curlingStone = other.gameObject;
@@ -31,7 +31,7 @@ public class CrystalFloor : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "CurlingStone(Clone)")
+        if (other.GetComponent<CurlingStone>())
         {
             entered = false;
         }

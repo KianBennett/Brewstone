@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: df36fd59f51e6e4479452c8177d91bd9
+guid: 6b319a2a7cd282343a70248c6112f785
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
@@ -7,43 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 7df7f124577e6494790505dba8bfe813, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: 63daee05d0536f24ab1ceb0b23fbb8c0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: f6f01fe64a876294a94cfc819296570b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.004
-    second: {fileID: 2100000, guid: 421bcef84686fda4eac13a94f409e1ef, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.005
-    second: {fileID: 2100000, guid: 40ed5e60e0aaeec4c80bff1b058c40f8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.006
-    second: {fileID: 2100000, guid: 34fa22d4dc2e6af4ca25ab5dcfba84f4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.007
-    second: {fileID: 2100000, guid: 6895f84bd23115143adb94aadc9607e4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.008
-    second: {fileID: 2100000, guid: e3d6ddf79f53e8647bb0f915a83605f8, type: 2}
+      name: Material #26
+    second: {fileID: 2100000, guid: 20055b6adb3e9e0409f2493bfaee032d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -76,7 +41,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
