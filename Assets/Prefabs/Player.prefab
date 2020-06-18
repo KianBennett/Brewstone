@@ -1917,34 +1917,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &989135507
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4393268535641604807}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.255752, y: 2.4691336, z: 0.37726685}
-  m_Center: {x: -6.8555303, y: 0.954094, z: 0.7383753}
---- !u!114 &989135506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4393268535641604807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c73bff7b3afc147ba7d7baad6c41c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshFill: {fileID: 5790557511616624920}
-  matDefault: {fileID: 2100000, guid: 0a128ca9cb62cae4d938f08ae9658594, type: 2}
-  matHighlighted: {fileID: 2100000, guid: 0442805e4c2f396468edd63975b9db4a, type: 2}
 --- !u!1 &3474931342002254224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,7 +2296,7 @@ MonoBehaviour:
   curlingStoneMushroomPrefab: {fileID: 952655594750062297, guid: c17fbb34374565c4d90f1e34e47ac179, type: 3}
   curlingStonePos: {fileID: 1755979820}
   throwStrengthIndicator: {fileID: 8928692268281876120}
-  healthMax: 0
+  healthMax: 3
   healthCurrent: 0
   itemsNearby: []
   potionTypeSelected: 0
@@ -7861,6 +7833,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3474931342540010645}
+--- !u!65 &989135507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4393268535641604807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.255752, y: 2.4691336, z: 0.37726685}
+  m_Center: {x: -6.8555303, y: 0.954094, z: 0.7383753}
+--- !u!114 &989135506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4393268535641604807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c73bff7b3afc147ba7d7baad6c41c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFill: {fileID: 5790557511616624920}
+  matDefault: {fileID: 2100000, guid: 0a128ca9cb62cae4d938f08ae9658594, type: 2}
+  matHighlighted: {fileID: 2100000, guid: 0442805e4c2f396468edd63975b9db4a, type: 2}
 --- !u!1 &4567372503233526541
 GameObject:
   m_ObjectHideFlags: 0

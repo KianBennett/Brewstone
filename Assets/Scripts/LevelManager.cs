@@ -12,9 +12,26 @@ public class LevelManager : Singleton<LevelManager> {
     }
 
     public GroundItem brimstonePrefab, nitrogenPrefab, crystalPrefab, mushroomPrefab, gunpowerPrefab;
+    public bool playIntroCutscene;
+    public Camera cutsceneCamera;
+    public bool isChangingScene;
 
     private List<IngredientSpawnInfo> ingredientSpawnList = new List<IngredientSpawnInfo>();
     private const float ingredientSpawnInterval = 20.0f;
+
+    protected override void Awake() {
+        base.Awake();
+    }
+    
+    void Start() {
+        if(playIntroCutscene && cutsceneCamera && !CrossSceneData.hasSeenIntroCutscene) {
+            cutsceneCamera.gameObject.SetActive(true);
+            PlayerController.instance.canControlPlayer = false;
+            PlayerController.instance.inputBlocked = true;
+            HUD.instance.gameObject.SetActive(false);
+            CrossSceneData.hasSeenIntroCutscene = true;
+        }
+    }
 
     void Update() {
         // Iterate over list backwards to allow for remove items from list
@@ -50,5 +67,12 @@ public class LevelManager : Singleton<LevelManager> {
                 return gunpowerPrefab;
         }
         return null;
+    }
+
+    public void EndCutscene() {
+        cutsceneCamera.gameObject.SetActive(false);
+        PlayerController.instance.canControlPlayer = true;
+        PlayerController.instance.inputBlocked = false;
+        HUD.instance.gameObject.SetActive(true);
     }
 }

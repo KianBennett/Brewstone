@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PotionType {
     Brimstone, Crystal, Nitrogen, Mushroom, Gunpowder
@@ -19,6 +20,7 @@ public class PlayerController : Singleton<PlayerController> {
     [ReadOnly] public int healthCurrent;
     [ReadOnly] public List<GroundItem> itemsNearby = new List<GroundItem>();
     [ReadOnly] public PotionType potionTypeSelected;
+    [ReadOnly] public bool inputBlocked;
 
      public bool canControlPlayer {
         get { return controls.Character.enabled; }
@@ -62,34 +64,36 @@ public class PlayerController : Singleton<PlayerController> {
         //    Cursor.lockState = CursorLockMode.Locked; 
         //}
 
-        if(Input.GetKeyDown(KeyCode.B)) {
-            if(isBrewing) StopBrewing();
-                else StartBrewing();
-        }
-
-        if(Input.GetKeyDown(KeyCode.E)) {
-            if(!isCurling && !isBrewing && movement.canMove && hasPotionSelected()) {
-                PrepareCurl();
+        if(!inputBlocked) {
+            if(Input.GetKeyDown(KeyCode.B)) {
+                if(isBrewing) StopBrewing();
+                    else StartBrewing();
             }
-        }
 
-        if(Input.GetKeyUp(KeyCode.E)) {
-            if(isCurling) {
-                ThrowCurl();
+            if(Input.GetKeyDown(KeyCode.E)) {
+                if(!isCurling && !isBrewing && movement.canMove && hasPotionSelected()) {
+                    PrepareCurl();
+                }
             }
-        }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1)) {
-            potionTypeSelected = PotionType.Brimstone;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2)) {
-            potionTypeSelected = PotionType.Crystal;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3)) {
-            potionTypeSelected = PotionType.Nitrogen;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha4)) {
-            potionTypeSelected = PotionType.Mushroom;
+            if(Input.GetKeyUp(KeyCode.E)) {
+                if(isCurling) {
+                    ThrowCurl();
+                }
+            }
+
+            if(Input.GetKeyDown(KeyCode.Alpha1)) {
+                potionTypeSelected = PotionType.Brimstone;
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha2)) {
+                potionTypeSelected = PotionType.Crystal;
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha3)) {
+                potionTypeSelected = PotionType.Nitrogen;
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha4)) {
+                potionTypeSelected = PotionType.Mushroom;
+            }
         }
 
         if(isCurling) {
@@ -187,12 +191,18 @@ public class PlayerController : Singleton<PlayerController> {
         movement.rigidbody.velocity = Vector3.zero;
         movement.rigidbody.AddForce(dir * 12, ForceMode.Impulse);
         movement.LookAt(pos);
+
+        healthCurrent--;
     }
 
     public void Recover() {
         isHurt = false;
         movement.canLook = true;
         movement.canMove = true;
+
+        if(healthCurrent < 1) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     public void GrabNearestItem() {
@@ -208,6 +218,11 @@ public class PlayerController : Singleton<PlayerController> {
         movement.canMove = false;
         movement.LookAt(item.transform.position);
         movement.rigidbody.velocity = Vector3.zero;
+    }
+
+    public void Respawn(Vector3 respawnPoint) {
+        movement.rigidbody.velocity = Vector3.zero;
+        transform.position = respawnPoint;
     }
 
     public void PickUpItem() {

@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
     {
         black.SetActive(true);
         screenFade = black.gameObject.GetComponent<Animator>();
+        screenFade.SetTrigger("FadeIn");
     }
     public void LoadScene(string scene)
     {
@@ -19,7 +20,7 @@ public class SceneController : MonoBehaviour
     IEnumerator FadeOut(string scene)
     {
         screenFade.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(scene);
     }
 

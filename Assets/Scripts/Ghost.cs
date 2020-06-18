@@ -31,6 +31,10 @@ public class Ghost : MonoBehaviour {
                     goToNextPatrolPoint();
                 }
             }
+
+            if(LevelManager.instance.isChangingScene) {
+                return;
+            }
             
             Vector3 target = transform.position;
 
@@ -45,7 +49,6 @@ public class Ghost : MonoBehaviour {
             
             dir.y = rigidbody.velocity.y;
             rigidbody.velocity = dir;
-
             
             lookDir.y = 0;
             if(lookDir != Vector3.zero) {

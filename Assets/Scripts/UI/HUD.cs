@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HUD : MonoBehaviour {
+public class HUD : Singleton<HUD> {
 
     public PotionButton potionButtonBrimstone, potionButtonCrystal, potionButtonNitrogen, potionButtonMushroom;
+    public GameObject[] heartIcons;
 
     void Update() {
         potionButtonBrimstone.SetActive(PlayerController.instance.potionTypeSelected == PotionType.Brimstone);
@@ -16,6 +17,10 @@ public class HUD : MonoBehaviour {
         potionButtonCrystal.SetCount(InventoryManager.instance.crystalPotionHeld);
         potionButtonNitrogen.SetCount(InventoryManager.instance.nitrogenPotionHeld);
         potionButtonMushroom.SetCount(InventoryManager.instance.mushroomPotionHeld);
+
+        heartIcons[0].SetActive(PlayerController.instance.healthCurrent >= 1);
+        heartIcons[1].SetActive(PlayerController.instance.healthCurrent >= 2);
+        heartIcons[2].SetActive(PlayerController.instance.healthCurrent >= 3);
     }
 
     private PotionButton GetPotionButton(PotionType type) {

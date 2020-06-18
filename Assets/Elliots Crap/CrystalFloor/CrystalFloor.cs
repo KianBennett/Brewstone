@@ -23,7 +23,7 @@ public class CrystalFloor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<CurlingStone>() && hit == false)
+        if (other.GetComponent<CurlingStone>() && other.GetComponent<CurlingStone>().type == PotionType.Crystal && hit == false)
         {
             entered = true;
             curlingStone = other.gameObject;
@@ -31,7 +31,7 @@ public class CrystalFloor : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<CurlingStone>())
+        if (other.GetComponent<CurlingStone>() && other.GetComponent<CurlingStone>().type == PotionType.Crystal)
         {
             entered = false;
         }

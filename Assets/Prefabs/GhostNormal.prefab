@@ -68,7 +68,7 @@ MonoBehaviour:
   - {fileID: 4982657695329485338}
   eyeMat: {fileID: 2100000, guid: b5e0efe7295d3494bb519c52689be0c6, type: 2}
   eyeMatChase: {fileID: 2100000, guid: dce4c877ff676ac4ea200d83bc8337b2, type: 2}
-  moveSpeed: 5.5
+  moveSpeed: 6
   hasWeakness: 0
   weakness: 0
   patrolPoints: []

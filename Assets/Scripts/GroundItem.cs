@@ -6,7 +6,7 @@ public class GroundItem : MonoBehaviour {
 
     public PotionType type;
 
-    private const float grabDist = 2.0f;
+    private const float grabDist = 3.5f;
 
     void Update() {
         Vector3 pos = transform.position;

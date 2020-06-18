@@ -55,7 +55,7 @@ MonoBehaviour:
   explodeParticlesPrefab: {fileID: 4578981229116096406, guid: 58177eb219033234683b3fe3046d149f, type: 3}
   smokeParticlesPrefab: {fileID: 5018113527010051584, guid: 5c739798ada03cd40a2c829f8d90601b, type: 3}
   explosionRadius: 5
-  type: 0
+  type: 2
   hasExploded: 0
 --- !u!111 &3303338486988323309
 Animation:

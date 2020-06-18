@@ -9,4 +9,8 @@ public class AnimHelper : MonoBehaviour {
     public void Destroy() {
         Destroy(rootObject);
     }
+
+    public void EndCutscene() {
+        LevelManager.instance.EndCutscene();
+    }
 }

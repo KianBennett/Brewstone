@@ -48,6 +48,7 @@ public class CurlingStone : MonoBehaviour {
         if(hasExploded) return;
         hasExploded = true;
         rigidbody.velocity = Vector3.zero;
+        rigidbody.useGravity = false;
         pointLight.gameObject.SetActive(true);
         Destroy(model);
         Instantiate(explodeParticlesPrefab, transform.position, Quaternion.Euler(-90, 0, 0));
@@ -58,6 +59,8 @@ public class CurlingStone : MonoBehaviour {
             float dist = Vector3.Distance(ghost.transform.position, transform.position);
             if(dist < explosionRadius && ((ghost.hasWeakness && ghost.weakness == type) || !ghost.hasWeakness)) {
                 ghost.Kill();
+            } else if(ghost.hasWeakness && ghost.weakness != type) {
+                ghost.animator.SetTrigger("attack");
             }
         }
     }

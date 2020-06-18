@@ -39,6 +39,19 @@ public class InventoryManager : Singleton<InventoryManager>
         crystalPot.SetActive(false);
         mushroomPot.SetActive(false);
         nitrogenPot.SetActive(false);
+
+        if(CrossSceneData.useCrossSceneValues) {
+            brimstoneHeld = CrossSceneData.brimstoneHeld;
+            nitrogenHeld = CrossSceneData.nitrogenHeld;
+            crystalHeld = CrossSceneData.crystalHeld;
+            mushroomHeld = CrossSceneData.mushroomHeld;
+            gunpowderHeld = CrossSceneData.gunpowderHeld;
+
+            brimstonePotionHeld = CrossSceneData.brimstonePotionHeld;
+            nitrogenPotionHeld = CrossSceneData.nitrogenPotionHeld;
+            crystalPotionHeld = CrossSceneData.crystalPotionHeld;
+            mushroomPotionHeld = CrossSceneData.mushroomPotionHeld;
+        }
     }
 
     public void SlotSelected(string ingredient)
